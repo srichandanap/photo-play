@@ -11,10 +11,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import redHeart from '../../assets/redSmall.png';
+import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 
 const Photos = () => {
   const navigate = useNavigate();
-  const [podal, setPModal] = useState(false);
   const [fav, setFav] = useState(false);
   const [favActive, setFavActive] = useState(false);
 
@@ -26,41 +26,48 @@ const Photos = () => {
   }, [state]);
 
   const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
-  console.log("previ", previousData)
+  // console.log("previ", previousData);
 
-  useEffect(() => {
-    for (let i = 0; i < previousData.length; i++) {
-      console.log("previ", (previousData[i].id) ===(state && state.photos && state.photos.id))
-      if ((previousData[i]&&previousData[i].id) ===(state && state.photos && state.photos.id)
-      ) {
-        setFav(true);
-        break;
-      } else {
-        setFav(false);
-        break;
-      }
-    }
-  });
+  // useEffect(() => {
+  //   for (let i = 0; i <= previousData.length; i++) {
+  //     for (let j = 0; j <= state.photos; j++) {
+  //       if ((previousData[i].id) === (state && state.photos && state.photos.id)
+  //       ) {
+  //         setFav(true);
+  //         break;
+  //       } else {
+  //         setFav(false);
+  //         break;
+  //       }
+  //     }
+  //   }
 
-  const addFav = (data: any) => {console.log(data);
-  
+  // });
+
+  const addFav = (data: any) => {
+    console.log(data);
+    const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
     const arr: any[] = [];
     previousData.map((user: any, i: number) => {
+
       if ((user && user.id) === (data && data.id)) {
         arr.push("exists");
       }
     });
     if (arr.includes("exists")) {
       alert("already exists");
-    } else {
+    }
+    else {
       if (data !== "" && data.message !== "Internal Server Error") {
         previousData.push(data);
+        // setFav(fav);
         localStorage.setItem("fav", JSON.stringify(previousData));
         // setFav(true);
-        // setFavActive(!favActive);
-      } else {
+      }
+      else {
         alert("Enter correct Data");
       }
+
     }
   };
 
@@ -69,7 +76,6 @@ const Photos = () => {
     console.log("id", favourites);
     let remId = -1;
     for (let i = 0; i < favourites.length; i++) {
-      // console.log("id", favourites[i].location.woeid, location.location.woeid);
       if (favourites[i].id === data.id) {
         remId = i;
       }
@@ -87,14 +93,26 @@ const Photos = () => {
       <div className="photos-div">
         <div className="photo-row">
           {state && state.photos && state.photos.map((data: any) => {
+
+            let fav = false;
+            for (let i = 0; i < previousData.length; i++) {
+              if (previousData[i].id === data.id) {
+                fav = true
+                break
+              } else {
+                fav = false
+              }
+            }
+
             return (<div className='photo-part'>
               <img src={data && data.src && data.src.small} onClick={() => navigate('/pmodal')} className='p-img' alt="" />
               {!fav ? (<div className="heart" >
-                <img src={whiteHeart} className='h-img' alt="" onClick={() => { addFav(data); }}/>
+                <img src={whiteHeart} className='h-img' alt="" onClick={() => { addFav(data); }} />
               </div>) :
-                (<div className="heart" onClick={() => removeItem(data)} >
-                  <img src={redHeart} className='h-img' alt="" />
-                </div>)}
+                (<div className="heart" >
+                  <img src={redHeart} className='h-img' alt="" onClick={() => { removeItem(data); }} />
+                </div>)
+              }
 
               {/* <div className='user-details'>
           <div className="profile"><img src={state && state.photos && state.photos[0].photographer_url} className='profile-img' alt="" /></div>
