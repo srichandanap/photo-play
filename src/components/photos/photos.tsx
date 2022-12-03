@@ -11,63 +11,63 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import redHeart from '../../assets/redSmall.png';
-import { isLabelWithInternallyDisabledControl } from '@testing-library/user-event/dist/utils';
 
 const Photos = () => {
   const navigate = useNavigate();
+  const [podal, setPModal] = useState(false);
+  const [newFav, setNewFav] = useState(false);
   const [fav, setFav] = useState(false);
   const [favActive, setFavActive] = useState(false);
 
-
   const state = useSelector((state: any) => state.photoVideos.photo) // for the data to get from header page
-
+  let previousData: any = [];
   useEffect(() => {  // useEffect for the data to get from header page
-    console.log("photos", state.photos);
+    console.log("photos", state);
+    // console.log("id", state);
+    previousData = JSON.parse(localStorage.getItem("fav") || "[]");
   }, [state]);
 
-  const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
-  // console.log("previ", previousData);
 
-  // useEffect(() => {
-  //   for (let i = 0; i <= previousData.length; i++) {
-  //     for (let j = 0; j <= state.photos; j++) {
-  //       if ((previousData[i].id) === (state && state.photos && state.photos.id)
-  //       ) {
-  //         setFav(true);
-  //         break;
-  //       } else {
-  //         setFav(false);
-  //         break;
-  //       }
-  //     }
-  //   }
+  console.log("previ", typeof previousData)
 
-  // });
+  useEffect(() => {
+
+  }, [state]);
+
+  // useEffect(()=>{
+  //   const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
+  // })
+
+  // const addFav = (data: any) => {
+  //   console.log(data);
+
+
+  // }
+
 
   const addFav = (data: any) => {
     console.log(data);
-    const previousData = JSON.parse(localStorage.getItem("fav") || "[]");
     const arr: any[] = [];
-    previousData.map((user: any, i: number) => {
 
+    previousData.map((user: any, i: number) => {
       if ((user && user.id) === (data && data.id)) {
+        // setFav(true);
         arr.push("exists");
       }
     });
     if (arr.includes("exists")) {
       alert("already exists");
-    }
-    else {
+    } else {
       if (data !== "" && data.message !== "Internal Server Error") {
         previousData.push(data);
-        // setFav(fav);
+
         localStorage.setItem("fav", JSON.stringify(previousData));
+        previousData = JSON.parse(localStorage.getItem("fav") || "[]");
         // setFav(true);
-      }
-      else {
+        // setFavActive(!favActive);
+      } else {
         alert("Enter correct Data");
       }
-
     }
   };
 
@@ -88,14 +88,17 @@ const Photos = () => {
     // window.location.reload();
   };
 
+
   return (
     <div className='photo'>
       <div className="photos-div">
         <div className="photo-row">
           {state && state.photos && state.photos.map((data: any) => {
 
-            let fav = false;
+            let fav = false
+            // setNewFav(fav);
             for (let i = 0; i < previousData.length; i++) {
+
               if (previousData[i].id === data.id) {
                 fav = true
                 break
@@ -104,15 +107,15 @@ const Photos = () => {
               }
             }
 
+
             return (<div className='photo-part'>
               <img src={data && data.src && data.src.small} onClick={() => navigate('/pmodal')} className='p-img' alt="" />
-              {!fav ? (<div className="heart" >
-                <img src={whiteHeart} className='h-img' alt="" onClick={() => { addFav(data); }} />
+              {!fav ? (<div className="heart" onClick={() => { addFav(data); }} >
+                <img src={whiteHeart} className='h-img' alt="" />
               </div>) :
-                (<div className="heart" >
+                (<div className="heart">
                   <img src={redHeart} className='h-img' alt="" onClick={() => { removeItem(data); }} />
-                </div>)
-              }
+                </div>)}
 
               {/* <div className='user-details'>
           <div className="profile"><img src={state && state.photos && state.photos[0].photographer_url} className='profile-img' alt="" /></div>
