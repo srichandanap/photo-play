@@ -1,0 +1,72 @@
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    /* flex-direction: row; */
+    padding: 2% 13% 0% 13%;
+}
+
+.tabs-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(36, 103, 158, 0.2);
+    padding-bottom: 0.8rem;
+    position: fixed;
+    margin-top: 18rem;
+    padding-top: 1rem;
+    width: 75%;
+    z-index: 2;
+    background-color: #FFFFFF;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* width: 19%; */
+    gap: 2.5rem;
+}
+
+.tab {
+    opacity: 0.5;
+    color: #230735;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 21px;
+    text-align: center;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+.active {
+    color: #E81244;
+    /* font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 21px; */
+    border-bottom: 2px solid #E81244;
+    padding: 0.68rem;
+}
+
+.tabf {
+    opacity: 0.5;
+    color: #230735;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 21px;
+    /* padding-right: 1.2rem; */
+}
+
+@media screen and (max-width: 1067px) {
+    .tab-container {
+        padding: 3% 10% 0% 10%;
+    }
+}

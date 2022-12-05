@@ -1,0 +1,10 @@
+.playButton {
+    position: absolute;
+    right: 87px;
+    top: 52px;
+}
+
+.play-img {
+    display: flex;
+
+}

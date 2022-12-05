@@ -1,0 +1,172 @@
+.header {
+    background-color: #F3F3F3;
+    padding: 2% 11%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.brownLogo {
+    display: flex;
+}
+
+.searchPosition {
+    display: flex;
+}
+
+.modal-search {
+    display: flex;
+    position: relative;
+}
+
+.modal-search-input {
+    width: 20rem;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    /* border: none; */
+    outline: none;
+    padding: 0.7rem;
+}
+
+.searchInput::placeholder {
+    opacity: 0.43;
+    color: #2F2F2F;
+    font-family: Roboto;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+.search-button {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.32px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #560014;
+    padding: 0.5rem 0.97rem;
+    position: absolute;
+    right: 2px;
+    top: 1.9px;
+}
+
+.displayPhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.pmodal-container {}
+
+.modalPhoto {
+    position: relative;
+    display: flex;
+}
+
+.foot2 {
+    display: flex;
+    background-color: #F2F2F2;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0 1.5rem 0;
+    bottom: 0;
+}
+
+.big-heart {
+    display: flex;
+    position: absolute;
+    top: -2.8rem;
+    left: 23.9rem;
+}
+
+.photo-details {
+    display: flex;
+    position: absolute;
+
+}
+
+.first-line {
+    position: absolute;
+    bottom: 13rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+.big-image {
+    position: relative;
+    display: flex;
+}
+
+.about-imag {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: -3rem;
+    left: -34.5rem;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 28px;
+
+}
+
+.big-user-profile {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -12.5rem;
+    left: -34.5rem;
+    gap: 0.8rem;
+
+}
+
+.photographer-name {
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+.modalPhoto {
+    position: relative;
+}
+
+.zoom-button {
+    display: flex;
+    position: absolute;
+    left: 28rem;
+    top: -3rem;
+    gap: 0.2rem;
+}
+
+.plus {
+    border-radius: 4px 0 0 4px;
+    background-color: #FFFFFF;
+    display: flex;
+    border: none;
+    outline: none;
+    padding: 0.4rem 0.6rem;
+}
+
+.minus {
+    border-radius: 0 4px 4px 0;
+    background-color: #FFFFFF;
+    border: none;
+    display: flex;
+    outline: none;
+    left: 1rem;
+    padding: 0.4rem 0.6rem;
+}
